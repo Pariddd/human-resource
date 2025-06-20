@@ -69,9 +69,13 @@
                             <td>
                                 <a href="" class="btn btn-info btn-sm">View</a>
                                 @if ($task->status == 'pending')
-                                    <a href="" class="btn btn-success btn-sm">Mark as Done</a>
+                                    <a href="{{ route('tasks.done', $task->id) }}" class="btn btn-success btn-sm">Mark as Done</a>
+                                    <a href="{{ route('tasks.progress', $task->id) }}" class="btn btn-info btn-sm">Mark as On Progress</a>
+                                @elseif($task->status == 'done')
+                                    <a href="{{ route('tasks.pending', $task->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
                                 @else
-                                    <a href="" class="btn btn-warning btn-sm">Mark as Pending</a>
+                                    <a href="{{ route('tasks.done', $task->id) }}" class="btn btn-success btn-sm">Mark as Done</a>
+                                    <a href="{{ route('tasks.pending', $task->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
                                 @endif
                                 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline">

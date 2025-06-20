@@ -11,6 +11,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('tasks', TaskController::class);
+Route::get('tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done');
+Route::get('tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending');
+Route::get('tasks/onprogress/{id}', [TaskController::class, 'progress'])->name('tasks.progress');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

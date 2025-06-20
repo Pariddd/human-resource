@@ -82,6 +82,30 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 
+    public function done(int $id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'done']);
+        return redirect()->route('tasks.index')
+            ->with('success', 'Task marked as Done.');
+    }
+
+    public function pending(int $id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'pending']);
+        return redirect()->route('tasks.index')
+            ->with('success', 'Task marked as Pending.');
+    }
+
+    public function progress(int $id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'on progress']);
+        return redirect()->route('tasks.index')
+            ->with('success', 'Task marked as On Progress.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
