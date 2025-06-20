@@ -20,7 +20,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
                         <li class="breadcrumb-item" aria-current="page">Task</li>
-                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -30,7 +30,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    Add.
+                    Edit.
                 </h5>
             </div>
             <div class="card-body">
