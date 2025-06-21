@@ -97,6 +97,21 @@ class EmployeeController extends Controller
             ->with('success', 'Employee updated successfully');
     }
 
+    public function inactive(int $id)
+    {
+        $employee = Employee::find($id);
+        $employee->update(['status' => 'inactive']);
+        return redirect()->route('employees.index')
+            ->with('success', 'Employee marked as Inactive.');
+    }
+
+    public function active(int $id)
+    {
+        $employee = Employee::find($id);
+        $employee->update(['status' => 'active']);
+        return redirect()->route('employees.index')
+            ->with('success', 'Employee marked as Active.');
+    }
 
     /**
      * Remove the specified resource from storage.

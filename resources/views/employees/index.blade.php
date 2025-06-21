@@ -67,15 +67,12 @@
                             <td>Rp{{ number_format($employee->salary ?? 0, 0, ',', '.') }}</td>
                             <td>
                                 <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm mb-2 mt-2">View</a>
-                                {{-- @if ($employee->status == 'pending')
-                                    <a href="{{ route('employees.done', $employee->id) }}" class="btn btn-success btn-sm">Mark as Done</a>
-                                    <a href="{{ route('employees.progress', $employee->id) }}" class="btn btn-info btn-sm">Mark as On Progress</a>
-                                @elseif($employee->status == 'done')
-                                    <a href="{{ route('employees.pending', $employee->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
+                                @if ($employee->status == 'active')
+                                    <a href="{{ route('employees.inactive', $employee->id) }}" class="btn btn-secondary btn-sm">
+                                        Inactive </a>
                                 @else
-                                    <a href="{{ route('employees.done', $employee->id) }}" class="btn btn-success btn-sm">Mark as Done</a>
-                                    <a href="{{ route('employees.pending', $employee->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
-                                @endif --}}
+                                    <a href="{{ route('employees.active', $employee->id) }}" class="btn btn-success btn-sm">Active</a>
+                                @endif
                                 <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $employee->id }}" data-name="{{ $employee->fullname }}">Delete</button>
                             </td>
