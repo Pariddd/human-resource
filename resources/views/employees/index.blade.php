@@ -77,7 +77,7 @@
                                     <a href="{{ route('employees.pending', $employee->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
                                 @endif --}}
                                 <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $employee->id }}">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $employee->id }}" data-name="{{ $employee->fullname }}">Delete</button>
                             </td>
                         </tr>
                         @endforeach
@@ -86,21 +86,23 @@
             </div>
         </div>
     </section>
+    
     <!-- Modal Konfirmasi Hapus -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-3 shadow-sm border-0">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus tugas <strong>"{{ $employee->fullname }}"</strong>?  
+                    Apakah Anda yakin ingin menghapus karyawan ini?
+                    <strong id="employeeName"></strong>  
                     Tindakan ini tidak dapat dibatalkan.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display: inline;">
+                    <form id="deleteForm" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
@@ -114,20 +116,27 @@
 
     <!-- Script JS untuk update action form -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var deleteModal = document.getElementById('deleteModal');
-            var deleteForm = document.getElementById('deleteForm');
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteModal = document.getElementById('deleteModal');
+        var deleteForm = document.getElementById('deleteForm');
+        var employeeName = document.getElementById('employeeName');
 
-            if (deleteModal && deleteForm) {
-                deleteModal.addEventListener('show.bs.modal', function (event) {
-                    var button = event.relatedTarget;
-                    var employeeId = button.getAttribute('data-id');
-                    var action = "{{ url('employees') }}/" + employeeId;
+        if (deleteModal && deleteForm && employeeName) {
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var employeeId = button.getAttribute('data-id');
+                var name = button.getAttribute('data-name'); // Jika kamu tambahkan data-name
 
-                    deleteForm.setAttribute('action', action);
-                });
-            }
-        });
-    </script>
+                var action = "{{ url('employees') }}/" + employeeId;
+
+                // Set action form
+                deleteForm.setAttribute('action', action);
+
+                // Opsional: tampilkan nama employee di modal
+                employeeName.textContent = ' (' + name + ')';
+            });
+        }
+    });
+</script>
 </div>
 @endsection

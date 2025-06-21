@@ -77,7 +77,16 @@
                                     <a href="{{ route('tasks.pending', $task->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
                                 @endif
                                 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $task->id }}">Delete</button>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteModal"
+                                    data-id="{{ $task->id }}" 
+                                    data-name="{{ $task->title }}"
+                                >
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -90,17 +99,18 @@
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-3 shadow-sm border-0">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus tugas <strong>"{{ $task->title }}"</strong>?  
+                    Apakah Anda yakin ingin menghapus tugas ini?
+                    <strong id="taskName"></strong>  
                     Tindakan ini tidak dapat dibatalkan.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
+                    <form id="deleteForm" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
@@ -117,14 +127,20 @@
         document.addEventListener('DOMContentLoaded', function () {
             var deleteModal = document.getElementById('deleteModal');
             var deleteForm = document.getElementById('deleteForm');
+            var taskName = document.getElementById('taskName');
 
-            if (deleteModal && deleteForm) {
+            if (deleteModal && deleteForm && taskName) {
                 deleteModal.addEventListener('show.bs.modal', function (event) {
                     var button = event.relatedTarget;
                     var taskId = button.getAttribute('data-id');
-                    var action = "{{ url('tasks') }}/" + taskId;
+                    var title = button.getAttribute('data-name');
 
+                    // Set action form
+                    var action = "{{ url('tasks') }}/" + taskId;
                     deleteForm.setAttribute('action', action);
+
+                    // Update nama task di modal
+                    taskName.textContent = ' (' + title + ')';
                 });
             }
         });
