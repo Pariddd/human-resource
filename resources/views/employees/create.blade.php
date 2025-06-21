@@ -19,7 +19,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('tasks.index') }}">Employees</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Employees</a></li>
                         <li class="breadcrumb-item active" aria-current="page">New</li>
                     </ol>
                 </nav>

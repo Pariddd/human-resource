@@ -64,7 +64,7 @@
                                         {{ ucfirst($employee->status) }}</span>
                                 @endif
                             </td>
-                            <td>{{ number_format($employee->salary) }}</td>
+                            <td>Rp{{ number_format($employee->salary ?? 0, 0, ',', '.') }}</td>
                             <td>
                                 <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm mb-2 mt-2">View</a>
                                 {{-- @if ($employee->status == 'pending')

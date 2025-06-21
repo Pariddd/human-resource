@@ -39,7 +39,7 @@
                                     <i class="bi bi-pencil-square me-1"></i>Edit
                                 </a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    <i class="bi bi-trash me-1"></i>Hapus
+                                    <i class="bi bi-trash me-1"></i>Delete
                                 </button>
                             </div>
                         </div>
