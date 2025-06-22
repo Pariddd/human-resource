@@ -23,8 +23,6 @@ Route::get('tasks/onprogress/{id}', [TaskController::class, 'progress'])->name('
 
 // Handle Employee
 Route::resource('employees', EmployeeController::class);
-Route::get('tasks/active/{id}', [EmployeeController::class, 'active'])->name('employees.active');
-Route::get('tasks/inactive/{id}', [EmployeeController::class, 'inactive'])->name('employees.inactive');
 
 // Handle Department
 Route::resource('departments', DepartmentController::class);
