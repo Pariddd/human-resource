@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TaskController;
+use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,9 @@ Route::get('tasks/onprogress/{id}', [TaskController::class, 'progress'])->name('
 Route::resource('employees', EmployeeController::class);
 Route::get('tasks/active/{id}', [EmployeeController::class, 'active'])->name('employees.active');
 Route::get('tasks/inactive/{id}', [EmployeeController::class, 'inactive'])->name('employees.inactive');
+
+// Handle Department
+Route::resource('departments', DepartmentController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
