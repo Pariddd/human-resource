@@ -62,7 +62,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('employees.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $department->id }}" data-name="{{ $department->fullname }}">Delete</button>
                             </td>
                         </tr>
