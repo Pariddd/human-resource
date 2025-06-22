@@ -42,7 +42,7 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-2">
-                        <label for="" class="form-label">Nama Department</label>
+                        <label for="" class="form-label">Name Department</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $department->name) }}" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>

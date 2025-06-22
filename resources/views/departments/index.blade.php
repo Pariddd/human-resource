@@ -42,7 +42,7 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Name Department</th>
                             <th>Description</th>
                             <th>Status</th>
                             <th>Option</th>
@@ -63,7 +63,15 @@
                             </td>
                             <td>
                                 <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $department->id }}" data-name="{{ $department->fullname }}">Delete</button>
+                                <button 
+                                type="button" 
+                                class="btn btn-danger btn-sm" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteModal" 
+                                data-id="{{ $department->id }}" 
+                                data-name="{{ $department->name }}">
+                                Delete
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -82,8 +90,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus karyawan ini?
-                    <strong id="employeeName"></strong>  
+                    Apakah Anda yakin ingin menghapus Department ini?
+                    <strong id="departmentName"></strong>  
                     Tindakan ini tidak dapat dibatalkan.
                 </div>
                 <div class="modal-footer">
@@ -105,21 +113,19 @@
     document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
         var deleteForm = document.getElementById('deleteForm');
-        var employeeName = document.getElementById('employeeName');
+        var departmentName = document.getElementById('departmentName');
 
-        if (deleteModal && deleteForm && employeeName) {
+        if (deleteModal && deleteForm && departmentName) {
             deleteModal.addEventListener('show.bs.modal', function (event) {
                 var button = event.relatedTarget;
-                var employeeId = button.getAttribute('data-id');
-                var name = button.getAttribute('data-name'); // Jika kamu tambahkan data-name
-
-                var action = "{{ url('employees') }}/" + employeeId;
+                var departmentId = button.getAttribute('data-id'); 
+                var title = button.getAttribute('data-name');
 
                 // Set action form
+                var action = "{{ url('departments') }}/" + departmentId;
                 deleteForm.setAttribute('action', action);
 
-                // Opsional: tampilkan nama employee di modal
-                employeeName.textContent = ' (' + name + ')';
+                taskName.textContent = ' (' + title + ')';
             });
         }
     });

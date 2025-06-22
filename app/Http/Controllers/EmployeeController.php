@@ -67,7 +67,6 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $employee = Employee::all();
         $departments = Department::all();
         $roles = Role::all();
 

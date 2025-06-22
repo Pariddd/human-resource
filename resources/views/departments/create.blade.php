@@ -37,7 +37,7 @@
                 <form action="{{ route('departments.store') }}" method="POST">
                     @csrf
                     <div class="mb-2">
-                        <label for="" class="form-label">Name</label>
+                        <label for="" class="form-label">Name Department</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>

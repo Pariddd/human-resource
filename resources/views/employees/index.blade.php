@@ -54,7 +54,7 @@
                         @foreach ($employees as $employee)    
                         <tr>
                             <td>{{ $employee->fullname }}</td>
-                            <td>{{ $employee->department->name }}</td>
+                            <td>{{ $employee->department->name ?? 'No Department' }}</td>
                             <td>{{ $employee->role->title }}</td>
                             <td>
                                 @if ($employee->status == 'active')
