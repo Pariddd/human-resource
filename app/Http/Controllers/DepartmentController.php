@@ -22,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('departments.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required',
+        ]);
+
+        Department::create($validated);
+        return redirect()->route('departments.index')->with('success', 'Department created successfully');
     }
 
     /**

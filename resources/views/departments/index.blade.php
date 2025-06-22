@@ -52,7 +52,7 @@
                         @foreach ($departments as $department)    
                         <tr>
                             <td>{{ $department->name }}</td>
-                            <td>{{ $department->description}}</td>
+                            <td>{{ $department->description ?? '-'}}</td>
                             <td>
                                 @if ($department->status == 'active')
                                     <span class="text-success">{{ ucfirst($department->status) }}</span>
