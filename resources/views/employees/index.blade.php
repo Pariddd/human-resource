@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{ $employee->fullname }}</td>
                             <td>{{ $employee->department->name ?? 'No Department' }}</td>
-                            <td>{{ $employee->role->title }}</td>
+                            <td>{{ $employee->role->title ?? 'No Role' }}</td>
                             <td>
                                 @if ($employee->status == 'active')
                                     <span class="text-success">{{ ucfirst($employee->status) }}</span>

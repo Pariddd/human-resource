@@ -60,7 +60,7 @@
                                 data-bs-toggle="modal" 
                                 data-bs-target="#deleteModal" 
                                 data-id="{{ $role->id }}" 
-                                data-name="{{ $role->name }}">
+                                data-name="{{ $role->title }}">
                                 Delete
                                 </button>
                             </td>

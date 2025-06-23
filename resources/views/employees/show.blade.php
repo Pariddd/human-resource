@@ -64,7 +64,7 @@
                             <div class="col-12">
                                 <dt class="text-muted small fw-semibold mb-1">Department</dt>
                                 <dd class="mb-0">
-                                    {{ $employee->department->name ?? '-' }}
+                                    {{ $employee->department->name ?? 'No Department' }}
                                 </dd>
                             </div>
 
@@ -72,7 +72,7 @@
                             <div class="col-12">
                                 <dt class="text-muted small fw-semibold mb-1">Role</dt>
                                 <dd class="mb-0">
-                                    {{ $employee->role->title ?? '-' }}
+                                    {{ $employee->role->title ?? 'No Role' }}
                                 </dd>
                             </div>
 
