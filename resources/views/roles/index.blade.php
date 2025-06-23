@@ -50,8 +50,8 @@
                     <tbody>
                         @foreach ($roles as $role)    
                         <tr>
-                            <td>{{ $role->title }}</td>
-                            <td>{{ $role->description ?? '-'}}</td>
+                            <td>{{ ucfirst($role->title) }}</td>
+                            <td>{{ ucfirst($role->description) ?? '-'}}</td>
                             <td>
                                 <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button 
@@ -82,7 +82,7 @@
                 </div>
                 <div class="modal-body">
                     Apakah Anda yakin ingin menghapus Role ini?
-                    <strong id="departmentName"></strong>  
+                    <strong id="name"></strong>  
                     Tindakan ini tidak dapat dibatalkan.
                 </div>
                 <div class="modal-footer">
@@ -104,9 +104,9 @@
     document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
         var deleteForm = document.getElementById('deleteForm');
-        var departmentName = document.getElementById('departmentName');
+        var name = document.getElementById('name');
 
-        if (deleteModal && deleteForm && departmentName) {
+        if (deleteModal && deleteForm && name) {
             deleteModal.addEventListener('show.bs.modal', function (event) {
                 var button = event.relatedTarget;
                 var departmentId = button.getAttribute('data-id'); 
@@ -116,7 +116,7 @@
                 var action = "{{ url('roles') }}/" + departmentId;
                 deleteForm.setAttribute('action', action);
 
-                taskName.textContent = ' (' + title + ')';
+                name.textContent = ' (' + title + ')';
             });
         }
     });
