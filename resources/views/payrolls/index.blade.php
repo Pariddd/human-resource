@@ -44,7 +44,7 @@
                         <tr>
                             <th>Name Employee</th>
                             <th>Salary</th>
-                            <th>Bonusses</th>
+                            <th>Bonuses</th>
                             <th>Deductions</th>
                             <th>Net Salary</th>
                             <th>Pay Date</th>
