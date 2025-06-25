@@ -52,7 +52,7 @@ class PayrollController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
         //
     }
@@ -60,24 +60,39 @@ class PayrollController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Payroll $payroll)
     {
-        //
+        $employees = Employee::all();
+
+        return view('payrolls.edit', compact('payroll', 'employees'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Payroll $payroll)
     {
-        //
+        $validated = $request->validate([
+            'employee_id' => 'required',
+            'salary' => 'required|numeric',
+            'deductions' => 'required|numeric',
+            'bonuses' => 'required|numeric',
+            'pay_date' => 'required|date',
+        ]);
+
+        $netSalary = $validated['salary'] - $validated['deductions'] + $validated['bonuses'];
+        $validated['net_salary'] = $netSalary;
+
+        $payroll->update($validated);
+        return redirect()->route('payrolls.index')->with('success', 'Payroll updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Payroll $payroll)
     {
-        //
+        $payroll->delete();
+        return redirect()->route('payrolls.index')->with('success', 'Payroll deleted successfully!');
     }
 }
