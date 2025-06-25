@@ -4,10 +4,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PresencesController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Presences;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,9 @@ Route::resource('departments', DepartmentController::class);
 
 // Handle Department
 Route::resource('roles', RoleController::class);
+
+// Handle Presences
+Route::resource('presences', PresencesController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
