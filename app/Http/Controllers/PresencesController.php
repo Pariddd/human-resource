@@ -83,8 +83,9 @@ class PresencesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Presences $presence)
     {
-        //
+        $presence->delete();
+        return redirect()->route('presences.index')->with('success', 'Presence deleted successfully');
     }
 }
