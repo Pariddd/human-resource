@@ -56,17 +56,28 @@ class PresencesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Presences $presence)
     {
-        //
+        $employees = Employee::all();
+
+        return view('presences.edit', compact('presence', 'employees'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Presences $presence)
     {
-        //
+        $validated = $request->validate([
+            'employee_id' => 'required',
+            'check_in' => 'required',
+            'check_out' => 'required',
+            'date' => 'required|date',
+            'status' => 'required|string',
+        ]);
+
+        $presence->update($validated);
+        return redirect()->route('presences.index')->with('success', 'Presence updated successfully');
     }
 
     /**
