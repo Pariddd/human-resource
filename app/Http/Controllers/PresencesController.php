@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\Presences;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class PresencesController extends Controller
      */
     public function create()
     {
-        //
+        $employees = Employee::all();
+        return view('presences.create', compact('employees'));
     }
 
     /**
@@ -31,7 +33,16 @@ class PresencesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'employee_id' => 'required',
+            'check_in' => 'required',
+            'check_out' => 'required',
+            'date' => 'required|date',
+            'status' => 'required|string',
+        ]);
+
+        Presences::create($validated);
+        return redirect()->route('presences.index')->with('success', 'Presence recorded successfully');
     }
 
     /**

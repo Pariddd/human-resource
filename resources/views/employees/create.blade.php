@@ -78,7 +78,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                     <div class="mb-2">
+                    <div class="mb-2">
                         <label for="" class="form-label">Department</label>
                         <select name="department_id" id="department_id" class="form-control @error('department_id') is-invalid @enderror">
                             <option value="">Select an Department</option>

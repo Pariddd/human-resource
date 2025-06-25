@@ -49,7 +49,6 @@ class EmployeeController extends Controller
         ]);
 
         Employee::create($validated);
-        // dd($request->all());
         return redirect()->route('employees.index')
             ->with('success', 'Employee created successfully');
     }
