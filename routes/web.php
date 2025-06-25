@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\PresencesController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
@@ -36,6 +37,9 @@ Route::resource('roles', RoleController::class);
 
 // Handle Presences
 Route::resource('presences', PresencesController::class);
+
+// Handle Payrolls
+Route::resource('payrolls', PayrollController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
