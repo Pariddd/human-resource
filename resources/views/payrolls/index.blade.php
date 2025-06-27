@@ -61,6 +61,7 @@
                             <td>Rp{{ number_format($payroll->net_salary ?? 0, 0, ',', '.') }}</td>
                             <td>{{ $payroll->pay_date}}</td>
                             <td>
+                                <a href="{{ route('payrolls.show', $payroll->id) }}" class="btn btn-info btn-sm">Salary Slip</a>
                                 <a href="{{ route('payrolls.edit', $payroll->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button 
                                 type="button" 

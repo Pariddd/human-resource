@@ -52,9 +52,9 @@ class PayrollController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Payroll $payroll)
     {
-        //
+        return view('payrolls.show', compact('payroll'));
     }
 
     /**
