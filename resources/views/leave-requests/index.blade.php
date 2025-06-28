@@ -58,10 +58,14 @@
                             <td>{{ $leaveRequest->start_date }}</td>
                             <td>{{ $leaveRequest->end_date }}</td>
                             <td>
-                                @if ($leaveRequest->status == 'approved')
+                                @if ($leaveRequest->status == 'confirm')
                                     <span class="badge bg-success">
                                         {{ucfirst($leaveRequest->status)}}
                                     </span>
+                                @elseif($leaveRequest->status == 'reject')
+                                    <span class="badge bg-danger">
+                                        {{ucfirst($leaveRequest->status)}}
+                                    </span>  
                                 @else
                                     <span class="badge bg-warning">
                                         {{ucfirst($leaveRequest->status)}}
@@ -69,6 +73,11 @@
                                 @endif
                             </td>
                             <td>
+                                @if ($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
+                                    <a href="{{ route('leave-requests.confirm', $leaveRequest->id) }}" class="btn btn-success btn-sm">Confirm</a>
+                                @else
+                                    <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">reject</a>
+                                @endif
                                 <a href="{{ route('leave-requests.edit', $leaveRequest->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button 
                                 type="button" 

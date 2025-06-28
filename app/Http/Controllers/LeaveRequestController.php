@@ -80,6 +80,20 @@ class LeaveRequestController extends Controller
         return redirect()->route('leave-requests.index')->with('success', 'Leave request updated successfully!');
     }
 
+    public function confirm(int $id)
+    {
+        $leaveRequest = LeaveRequest::findOrFail($id);
+        $leaveRequest->update(['status' => 'confirm']);
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request Confirmed successfully!');
+    }
+
+    public function reject(int $id)
+    {
+        $leaveRequest = LeaveRequest::findOrFail($id);
+        $leaveRequest->update(['status' => 'reject']);
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request Rejected successfully!');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
