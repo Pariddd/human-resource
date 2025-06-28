@@ -65,57 +65,90 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            
-            <li class="sidebar-item active ">
-                <a href="{{ route('dashboard') }}" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-           </li>
-            <li class="sidebar-item">
-                <a href="{{ route('tasks.index') }}" class='sidebar-link'>
-                    <i class="bi bi-check-circle-fill"></i>
-                    <span>Task</span>
-                </a>
-           </li>
-            <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-people-fill"></i>
-                    <span>Employees</span>
-                </a>
-           </li>
-            <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-briefcase"></i>
-                    <span>Departments</span>
-                </a>
-           </li>
+            @if (session('role') == 'HR')
+                <li class="sidebar-item active ">
+                    <a href="{{ route('dashboard') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('tasks.index') }}" class='sidebar-link'>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Task</span>
+                    </a>
+                </li>
+                    <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-people-fill"></i>
+                            <span>Employees</span>
+                        </a>
+                </li>
+                    <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-briefcase"></i>
+                            <span>Departments</span>
+                        </a>
+                </li>
+                <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-tag"></i>
+                            <span>Roles</span>
+                        </a>
+                </li>
+                <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-table"></i>
+                            <span>Precenses</span>
+                        </a>
+                </li>
+                <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-currency-dollar"></i>
+                            <span>Payrolls</span>
+                        </a>
+                </li>
+                <li class="sidebar-item">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-shift-fill"></i>
+                            <span>Leave Request</span>
+                        </a>
+                </li>           
+            @endif
+            @if (in_array(session('role'), ['Developer', 'Operator', 'Sales Tiktok']))
+                <li class="sidebar-item active ">
+                    <a href="{{ route('dashboard') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('tasks.index') }}" class='sidebar-link'>
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Task</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-table"></i>
+                        <span>Precenses</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-currency-dollar"></i>
+                        <span>Payrolls</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-shift-fill"></i>
+                        <span>Leave Request</span>
+                    </a>
+                </li> 
+            @endif
            <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-tag"></i>
-                    <span>Roles</span>
-                </a>
-           </li>
-           <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-table"></i>
-                    <span>Precenses</span>
-                </a>
-           </li>
-           <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-currency-dollar"></i>
-                    <span>Payrolls</span>
-                </a>
-           </li>
-           <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-shift-fill"></i>
-                    <span>Leave Request</span>
-                </a>
-           </li>
-           <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{ url('/logout') }}" class='sidebar-link'>
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Logout</span>
                 </a>
