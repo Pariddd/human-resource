@@ -54,7 +54,7 @@
                         @foreach ($leaveRequests as $leaveRequest)    
                         <tr>
                             <td>{{ $leaveRequest->employee->fullname ?? 'No Name' }}</td>
-                            <td>{{ $leaveRequest->Leave_type }}</td>
+                            <td>{{ $leaveRequest->leave_type }}</td>
                             <td>{{ $leaveRequest->start_date }}</td>
                             <td>{{ $leaveRequest->end_date }}</td>
                             <td>
