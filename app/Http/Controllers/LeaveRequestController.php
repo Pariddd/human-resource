@@ -97,8 +97,9 @@ class LeaveRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(LeaveRequest $leaveRequest)
     {
-        //
+        $leaveRequest->delete();
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request deleted successfully!');
     }
 }
