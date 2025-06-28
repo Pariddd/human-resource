@@ -34,7 +34,9 @@
             </div>
             <div class="card-body">
                 <div class="d-flex">
-                    <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3 ms-auto">New Task</a>
+                    @if (session('role') == 'HR')
+                        <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3 ms-auto">New Task</a>
+                    @endif
                 </div>
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -76,17 +78,19 @@
                                     <a href="{{ route('tasks.done', $task->id) }}" class="btn btn-success btn-sm">Mark as Done</a>
                                     <a href="{{ route('tasks.pending', $task->id) }}" class="btn btn-warning btn-sm">Mark as Pending</a>
                                 @endif
-                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-danger btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#deleteModal"
-                                    data-id="{{ $task->id }}" 
-                                    data-name="{{ $task->title }}"
-                                >
-                                    Delete
-                                </button>
+                                @if (session('role') == 'HR')    
+                                    <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-danger btn-sm" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#deleteModal"
+                                        data-id="{{ $task->id }}" 
+                                        data-name="{{ $task->title }}"
+                                    >
+                                        Delete
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
