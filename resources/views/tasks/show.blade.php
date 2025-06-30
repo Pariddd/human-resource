@@ -34,14 +34,16 @@
                     <div class="card-header bg-gradient-primary text-white py-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Detail Tugas</h4>
-                            <div>
-                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-light me-2">
-                                    <i class="bi bi-pencil-square me-1"></i>Edit
-                                </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    <i class="bi bi-trash me-1"></i>Delete
-                                </button>
-                            </div>
+                            @if (session('role') == 'HR')
+                                <div>
+                                    <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-light me-2">
+                                        <i class="bi bi-pencil-square me-1"></i>Edit
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                        <i class="bi bi-trash me-1"></i>Delete
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

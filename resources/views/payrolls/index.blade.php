@@ -34,7 +34,9 @@
             </div>
             <div class="card-body">
                 <div class="d-flex">
-                    <a href="{{ route('payrolls.create') }}" class="btn btn-primary mb-3 ms-auto">New Payroll</a>
+                    @if (session('role') == 'HR')
+                        <a href="{{ route('payrolls.create') }}" class="btn btn-primary mb-3 ms-auto">New Payroll</a>
+                    @endif
                 </div>
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -62,16 +64,18 @@
                             <td>{{ $payroll->pay_date}}</td>
                             <td>
                                 <a href="{{ route('payrolls.show', $payroll->id) }}" class="btn btn-info btn-sm">Salary Slip</a>
-                                <a href="{{ route('payrolls.edit', $payroll->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button 
-                                type="button" 
-                                class="btn btn-danger btn-sm" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#deleteModal" 
-                                data-id="{{ $payroll->id }}" 
-                                data-name="{{ $payroll->employee->fullname ?? 'No Name' }}">
-                                Delete
-                                </button>
+                                @if (session('role') == 'HR')
+                                    <a href="{{ route('payrolls.edit', $payroll->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <button 
+                                    type="button" 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteModal" 
+                                    data-id="{{ $payroll->id }}" 
+                                    data-name="{{ $payroll->employee->fullname ?? 'No Name' }}">
+                                    Delete
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
