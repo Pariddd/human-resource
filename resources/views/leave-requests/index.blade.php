@@ -76,10 +76,13 @@
                             </td>
                             <td>
                                 @if (session('role') == 'HR')
-                                    @if ($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
+                                    @if ($leaveRequest->status == 'pending')
+                                        <a href="{{ route('leave-requests.confirm', $leaveRequest->id) }}" class="btn btn-success btn-sm">Confirm</a>
+                                        <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">Reject</a>
+                                    @elseif($leaveRequest->status == 'reject')
                                         <a href="{{ route('leave-requests.confirm', $leaveRequest->id) }}" class="btn btn-success btn-sm">Confirm</a>
                                     @else
-                                        <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">reject</a>
+                                        <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">Reject</a>
                                     @endif
                                     <a href="{{ route('leave-requests.edit', $leaveRequest->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <button 
