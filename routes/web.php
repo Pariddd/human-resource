@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['role:HR,Developer,Sales Tiktok,Operator']);
+    Route::get('/dashboard/presence', [DashboardController::class, 'presence']);
 
     // Handle Task
     Route::resource('tasks', TaskController::class)->middleware(['role:HR,Developer,Sales Tiktok,Operator']);
