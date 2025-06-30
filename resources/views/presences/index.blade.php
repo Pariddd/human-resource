@@ -47,7 +47,9 @@
                             <th>Check Out</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Option</th>
+                            @if (session('role') == 'HR')
+                                <th>Option</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -66,16 +68,18 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('presences.edit', $presence->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button 
-                                type="button" 
-                                class="btn btn-danger btn-sm" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#deleteModal" 
-                                data-id="{{ $presence->id }}" 
-                                data-name="{{ $presence->employee->fullname }}">
-                                Delete
-                                </button>
+                                @if (session('role') == 'HR')    
+                                    <a href="{{ route('presences.edit', $presence->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <button 
+                                    type="button" 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteModal" 
+                                    data-id="{{ $presence->id }}" 
+                                    data-name="{{ $presence->employee->fullname }}">
+                                    Delete
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
