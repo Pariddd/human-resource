@@ -54,7 +54,7 @@
                         <select name="employee_id" id="employee_id" class="form-control @error('employee_id') is-invalid @enderror">
                             @foreach ($employees as $employee)
                             <option value="{{ $employee->id }}" @if(old('employee_id', $leaveRequest->employee_id) == $employee->id) selected @endif>
-                              {{ $employee->fullname }} 
+                            {{ $employee->fullname }} 
                             </option>
                             @endforeach
                         </select>

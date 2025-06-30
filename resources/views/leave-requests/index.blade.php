@@ -47,7 +47,9 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Status</th>
-                            <th>Option</th>
+                            @if (session('role') == 'HR')
+                                <th>Option</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -73,21 +75,23 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
-                                    <a href="{{ route('leave-requests.confirm', $leaveRequest->id) }}" class="btn btn-success btn-sm">Confirm</a>
-                                @else
-                                    <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">reject</a>
+                                @if (session('role') == 'HR')
+                                    @if ($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
+                                        <a href="{{ route('leave-requests.confirm', $leaveRequest->id) }}" class="btn btn-success btn-sm">Confirm</a>
+                                    @else
+                                        <a href="{{ route('leave-requests.reject', $leaveRequest->id) }}" class="btn btn-secondary btn-sm">reject</a>
+                                    @endif
+                                    <a href="{{ route('leave-requests.edit', $leaveRequest->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <button 
+                                    type="button" 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteModal" 
+                                    data-id="{{ $leaveRequest->id }}" 
+                                    data-name="{{ $leaveRequest->employee->fullname ?? 'No Name' }}">
+                                    Delete
+                                    </button>
                                 @endif
-                                <a href="{{ route('leave-requests.edit', $leaveRequest->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <button 
-                                type="button" 
-                                class="btn btn-danger btn-sm" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#deleteModal" 
-                                data-id="{{ $leaveRequest->id }}" 
-                                data-name="{{ $leaveRequest->employee->fullname ?? 'No Name' }}">
-                                Delete
-                                </button>
                             </td>
                         </tr>
                         @endforeach
